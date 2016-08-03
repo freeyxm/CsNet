@@ -59,7 +59,11 @@ namespace CsNetServer
 
         void OnRecvedData(MsgManager mgr, byte[] data)
         {
-            Logger.Info("Request count: {0}", ++m_requestCount);
+            ++m_requestCount;
+            if (m_requestCount % 1000 == 0)
+            {
+                Logger.Info("Request count: {0}K", m_requestCount / 1000);
+            }
 
             string msg = Encoding.UTF8.GetString(data);
             string addr = mgr.GetSocket().RemoteEndPoint.ToString();
