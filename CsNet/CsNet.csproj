@@ -40,11 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Collections\AvlTree.cs" />
-    <Compile Include="Collections\Cache.cs" />
-    <Compile Include="Collections\BinaryTree.cs" />
-    <Compile Include="Collections\IBinaryTree.cs" />
-    <Compile Include="Collections\RBTree.cs" />
     <Compile Include="Core\SocketMaster.cs" />
     <Compile Include="Dispatcher\Loopable.cs" />
     <Compile Include="Dispatcher\Runnable.cs" />

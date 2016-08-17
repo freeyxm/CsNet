@@ -43,9 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CsNet\BinaryTreeTest.cs" />
-    <Compile Include="CsNet\RBTreeTest.cs" />
-    <Compile Include="CsNet\AvlTreeTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestUtility.cs" />
