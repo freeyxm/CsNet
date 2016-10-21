@@ -27,8 +27,8 @@ namespace CsNet.Dispatcher
             m_taskQueue = new Queue<T>(initSize);
             m_producer = new Semaphore(capacity, capacity);
             m_consumer = new Semaphore(0, capacity);
-            m_produceTimeout = -1;
-            m_consumeTimeout = -1;
+            m_produceTimeout = Timeout.Infinite;
+            m_consumeTimeout = Timeout.Infinite;
         }
 
         /// <summary>
