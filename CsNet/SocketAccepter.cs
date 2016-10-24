@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net.Sockets;
-using CsNet.Util;
+using CsUtil.Util;
 
 namespace CsNet
 {

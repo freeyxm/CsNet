@@ -61,10 +61,13 @@
     <Compile Include="Core\SocketDispatcher.cs" />
     <Compile Include="Socket\SocketTcp.cs" />
     <Compile Include="Core\SocketWorker.cs" />
-    <Compile Include="Util\Logger.cs" />
-    <Compile Include="Util\Utility.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CsUtil\CsUtil\CsUtil.csproj">
+      <Project>{26e7fa2b-04c1-43e8-bf7a-596a99687949}</Project>
+      <Name>CsUtil</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

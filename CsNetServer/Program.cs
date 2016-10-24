@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net;
-using CsNet.Util;
+using CsUtil.Util;
 
 namespace CsNetServer
 {
@@ -8,7 +8,7 @@ namespace CsNetServer
     {
         static void Main(string[] args)
         {
-            Logger.LogLevel = Logger.Level.Info;
+            Logger.logLevel = Logger.LogLevel.Info;
 
             IPEndPoint ep = new IPEndPoint(0, 2016);
             Server server = new Server();

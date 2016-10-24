@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using CsNet;
-using CsNet.Util;
+using CsUtil.Util;
 
 namespace CsNetClient
 {
@@ -11,7 +11,7 @@ namespace CsNetClient
     {
         static void Main(string[] args)
         {
-            Logger.LogLevel = Logger.Level.Debug;
+            Logger.logLevel = Logger.LogLevel.Debug;
 
             IPAddress addr = IPAddress.Parse("127.0.0.1");
             IPEndPoint ep = new IPEndPoint(addr, 2016);

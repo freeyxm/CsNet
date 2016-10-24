@@ -71,6 +71,10 @@
       <Project>{98131d90-a25e-4f86-8d90-c02eac8349bd}</Project>
       <Name>CsNet</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CsUtil\CsUtil\CsUtil.csproj">
+      <Project>{26e7fa2b-04c1-43e8-bf7a-596a99687949}</Project>
+      <Name>CsUtil</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

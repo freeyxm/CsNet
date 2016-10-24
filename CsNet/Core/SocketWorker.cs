@@ -1,6 +1,6 @@
 ﻿using System;
 using CsNet.Dispatch;
-using CsNet.Util;
+using CsUtil.Util;
 
 namespace CsNet
 {

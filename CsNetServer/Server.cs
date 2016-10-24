@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using CsNet;
-using CsNet.Util;
+using CsUtil.Util;
 
 namespace CsNetServer
 {
@@ -70,13 +70,13 @@ namespace CsNetServer
                 {
                     Console.WriteLine(m_requestCount);
                 }
-                else if(cmd == "debug on")
+                else if (cmd == "debug on")
                 {
-                    Logger.LogLevel = Logger.Level.Debug;
+                    Logger.logLevel = Logger.LogLevel.Debug;
                 }
                 else if (cmd == "debug off")
                 {
-                    Logger.LogLevel = Logger.Level.Info;
+                    Logger.logLevel = Logger.LogLevel.Info;
                 }
             }
 
