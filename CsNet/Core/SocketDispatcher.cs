@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using CsNet.Dispatcher;
+using CsNet.Dispatch;
 
 namespace CsNet
 {
-    class TaskInfo
-    {
-        public SocketHandler handler;
-        public CheckFlag check;
-    }
-
-    class SocketDispatcher : Dispatcher<TaskInfo>
+    class SocketDispatcher : Dispatcher<SocketTask>
     {
         public SocketDispatcher(int capacity, int initSize)
             : base(capacity, initSize)
@@ -36,7 +30,7 @@ namespace CsNet
             var e2 = tasks.GetEnumerator();
             while (e2.MoveNext())
             {
-                TaskInfo task = new TaskInfo();
+                SocketTask task = new SocketTask();
                 task.handler = e2.Current.Key;
                 task.check = e2.Current.Value;
                 Produce(task);

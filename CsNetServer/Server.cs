@@ -10,7 +10,7 @@ namespace CsNetServer
 {
     class Server
     {
-        private ControlManager m_ctlMgr;
+        private SocketManager m_socketMgr;
         private SocketBase m_socket;
         private SocketAccepter m_socketAccepter;
         private List<SocketMsg> m_clients;
@@ -44,10 +44,10 @@ namespace CsNetServer
                 return;
             }
 
-            m_ctlMgr = new ControlManager(2);
-            m_ctlMgr.Start();
+            m_socketMgr = new SocketManager(2);
+            m_socketMgr.Start();
 
-            m_socketAccepter = new SocketAccepter(m_socket, m_ctlMgr.GetSocketListener());
+            m_socketAccepter = new SocketAccepter(m_socket, m_socketMgr.GetSocketListener());
             m_socketAccepter.SetOnAcceptSocket(OnAcceptSocket);
 
             Logger.Info("Server started: {0}", m_socket.Socket.LocalEndPoint.ToString());
@@ -59,7 +59,7 @@ namespace CsNetServer
                 if (cmd == "quit")
                 {
                     Logger.Info("Stopping server ...");
-                    m_ctlMgr.Stop();
+                    m_socketMgr.Stop();
                     break;
                 }
                 else if (cmd == "client")
@@ -81,7 +81,7 @@ namespace CsNetServer
             }
 
             Logger.Info("Waiting server stop ...");
-            m_ctlMgr.Join();
+            m_socketMgr.Join();
             Logger.Info("Server Stopped.");
 
             Console.Write("Press any key to quit ...");
@@ -90,7 +90,7 @@ namespace CsNetServer
 
         void OnAcceptSocket(Socket socket)
         {
-            SocketMsg s = new SocketMsg(new SocketBase(socket), m_ctlMgr.GetSocketListener());
+            SocketMsg s = new SocketMsg(new SocketBase(socket), m_socketMgr.GetSocketListener());
             s.SetOnRecvedData(OnRecvedData);
             s.SetOnSocketError(OnSocketError);
             s.Register();

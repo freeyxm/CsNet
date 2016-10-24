@@ -1,22 +1,21 @@
 ﻿using System;
 
-namespace CsNet.Dispatcher
+namespace CsNet.Dispatch
 {
     public abstract class Loopable : Runnable
     {
-        private bool m_quit;
+        private bool m_stop;
 
         public Loopable()
         {
-            m_quit = false;
         }
 
         public sealed override void Run()
         {
-            SetQuit(false);
+            SetStop(false);
             Running = true;
 
-            while (!m_quit)
+            while (!m_stop)
             {
                 Loop();
             }
@@ -26,14 +25,14 @@ namespace CsNet.Dispatcher
 
         protected abstract void Loop();
 
-        public void Quit()
+        public void Stop()
         {
-            SetQuit(true);
+            SetStop(true);
         }
 
-        protected void SetQuit(bool quit)
+        protected void SetStop(bool stop)
         {
-            m_quit = quit;
+            m_stop = stop;
         }
     }
 }

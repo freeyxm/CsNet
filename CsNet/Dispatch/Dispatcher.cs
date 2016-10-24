@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace CsNet.Dispatcher
+namespace CsNet.Dispatch
 {
     /// <summary>
     /// 分发中心，使用生产者-消费者模型。
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Dispatcher<T>
+    public class Dispatcher<T> where T : Task
     {
         protected Queue<T> m_taskQueue;
         private Semaphore m_producer;
         private Semaphore m_consumer;
+        private int m_producerTimeout;
+        private int m_consumerTimeout;
         private int m_capacity;
-        private int m_produceTimeout;
-        private int m_consumeTimeout;
 
         /// <summary>
         /// </summary>
@@ -27,17 +27,17 @@ namespace CsNet.Dispatcher
             m_taskQueue = new Queue<T>(initSize);
             m_producer = new Semaphore(capacity, capacity);
             m_consumer = new Semaphore(0, capacity);
-            m_produceTimeout = Timeout.Infinite;
-            m_consumeTimeout = Timeout.Infinite;
+            m_producerTimeout = Timeout.Infinite;
+            m_consumerTimeout = Timeout.Infinite;
         }
 
         /// <summary>
         /// 设置生产者等待超时时间
         /// </summary>
         /// <param name="milliseconds"></param>
-        public void SetProducterTimeout(int milliseconds)
+        public void SetProducerTimeout(int milliseconds)
         {
-            m_produceTimeout = milliseconds;
+            m_producerTimeout = milliseconds;
         }
 
         /// <summary>
@@ -46,12 +46,12 @@ namespace CsNet.Dispatcher
         /// <param name="milliseconds"></param>
         public void SetConsumerTimeout(int milliseconds)
         {
-            m_consumeTimeout = milliseconds;
+            m_consumerTimeout = milliseconds;
         }
 
         public bool Produce(T task)
         {
-            if (!m_producer.WaitOne(m_produceTimeout))
+            if (!m_producer.WaitOne(m_producerTimeout))
                 return false;
 
             lock (m_taskQueue)
@@ -62,9 +62,34 @@ namespace CsNet.Dispatcher
             return true;
         }
 
-        public bool Consume(ref T task)
+        public int Produce(List<T> tasks, int startIndex)
         {
-            if (!m_consumer.WaitOne(m_consumeTimeout))
+            if (!m_producer.WaitOne(m_producerTimeout))
+                return 0;
+
+            int count = 0;
+            lock (m_taskQueue)
+            {
+                count = Math.Min(tasks.Count - startIndex, m_capacity - m_taskQueue.Count);
+                if (count < 0)
+                {
+                    count = 0;
+                }
+                for (int i = 0; i < count; ++i)
+                {
+                    m_taskQueue.Enqueue(tasks[startIndex + i]);
+                }
+            }
+            m_consumer.Release(count);
+
+            return count;
+        }
+
+        public bool Consume(out T task)
+        {
+            task = null;
+
+            if (!m_consumer.WaitOne(m_consumerTimeout))
                 return false;
 
             bool hasTask = false;

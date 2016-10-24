@@ -41,20 +41,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\SocketMaster.cs" />
-    <Compile Include="Dispatcher\Loopable.cs" />
-    <Compile Include="Dispatcher\Runnable.cs" />
+    <Compile Include="Core\SocketTask.cs" />
     <Compile Include="Core\SocketHandler.cs" />
     <Compile Include="Core\SocketListener.cs" />
-    <Compile Include="Dispatcher\Dispatcher.cs" />
-    <Compile Include="Dispatcher\Master.cs" />
-    <Compile Include="Dispatcher\Worker.cs" />
+    <Compile Include="Dispatch\Consumer.cs" />
+    <Compile Include="Dispatch\Dispatcher.cs" />
+    <Compile Include="Dispatch\Loopable.cs" />
+    <Compile Include="Dispatch\Manager.cs" />
+    <Compile Include="Dispatch\Producer.cs" />
+    <Compile Include="Dispatch\Runnable.cs" />
+    <Compile Include="Dispatch\Task.cs" />
+    <Compile Include="Dispatch\ThreadManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SocketAccepter.cs" />
+    <Compile Include="SocketManager.cs" />
     <Compile Include="SocketMsg.cs" />
     <Compile Include="Socket\FResult.cs" />
     <Compile Include="Socket\SocketBase.cs" />
     <Compile Include="Core\SocketDispatcher.cs" />
-    <Compile Include="ControlManager.cs" />
     <Compile Include="Socket\SocketTcp.cs" />
     <Compile Include="Core\SocketWorker.cs" />
     <Compile Include="Util\Logger.cs" />

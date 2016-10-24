@@ -19,7 +19,7 @@ namespace CsNetClient
             List<Client> clients = new List<Client>();
             List<Thread> threads = new List<Thread>();
 
-            ControlManager socketMgr = new ControlManager(2);
+            SocketManager socketMgr = new SocketManager(2);
             socketMgr.Start();
 
             for (int i = 0; i < 200; ++i)

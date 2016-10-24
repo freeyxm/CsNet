@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CsNet.Dispatcher
+namespace CsNet.Dispatch
 {
     public interface IRunnable
     {

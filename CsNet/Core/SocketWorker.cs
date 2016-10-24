@@ -1,17 +1,17 @@
 ﻿using System;
-using CsNet.Dispatcher;
+using CsNet.Dispatch;
 using CsNet.Util;
 
 namespace CsNet
 {
-    class SocketWorker : Worker<TaskInfo>
+    class SocketWorker : Consumer<SocketTask>
     {
         public SocketWorker(SocketDispatcher dispatcher)
             : base(dispatcher)
         {
         }
 
-        protected override void Work(TaskInfo task)
+        protected override void Execute(SocketTask task)
         {
             try
             {

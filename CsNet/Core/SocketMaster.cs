@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using CsNet.Dispatcher;
+using CsNet.Dispatch;
 
 namespace CsNet
 {
-    class SocketMaster : Master<TaskInfo>
+    class SocketMaster : Producer<SocketTask>
     {
         private SocketDispatcher m_dispatcher;
         private SocketListener m_listener;
@@ -17,7 +17,7 @@ namespace CsNet
             m_listener.SetDispatch(m_dispatcher.Dispatch);
         }
 
-        protected override void Loop()
+        protected override void Produce()
         {
             m_listener.Listen();
         }
