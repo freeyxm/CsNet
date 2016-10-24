@@ -105,16 +105,6 @@ namespace CsNet.Dispatch
         }
         #endregion
 
-        public void SetProducerTimeout(int milliseconds)
-        {
-            m_dispatcher.SetProducerTimeout(milliseconds);
-        }
-
-        public void SetConsumerTimeout(int milliseconds)
-        {
-            m_dispatcher.SetConsumerTimeout(milliseconds);
-        }
-
         public Dispatcher<T> GetDispatcher()
         {
             return m_dispatcher;
