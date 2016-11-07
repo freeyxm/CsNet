@@ -11,7 +11,7 @@ namespace CsNet
         public SocketManager(int workerNum)
             : base(1000, 100)
         {
-            CreateDispatcher();
+            InitDispatcher();
             CreateMaster();
             CreateWorkers(workerNum);
         }
@@ -21,9 +21,9 @@ namespace CsNet
             return m_listener;
         }
 
-        private void CreateDispatcher()
+        private void InitDispatcher()
         {
-            m_dispatcher = CreateDispatcher(1000, 100) as SocketDispatcher;
+            m_dispatcher = GetDispatcher() as SocketDispatcher;
             m_dispatcher.SetProducerTimeout(1000);
             m_dispatcher.SetConsumerTimeout(500);
         }
